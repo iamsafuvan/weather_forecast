@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rive/rive.dart';
-import 'package:weather_app_api/model/weather_model.dart';
+import 'package:weather_app_api/repository/weather_model.dart';
 import 'package:weather_app_api/res/constant/constant.dart';
 import 'package:weather_app_api/view/home_page.dart';
 
@@ -20,23 +20,22 @@ class _StarterState extends State<Starter> {
   }
 
   getLocationData() async {
-   
-    WeatherModel weatherModel = WeatherModel();
+    WeatherRepository weatherModel = WeatherRepository();
     var status = await Permission.location.status;
-      if (status.isPermanentlyDenied) {
-        await Geolocator.openLocationSettings();
-      } else {
-        await Permission.location.request();
-      }
+    if (status.isPermanentlyDenied) {
+      await Geolocator.openLocationSettings();
+    } else {
+      await Permission.location.request();
+    }
     var weatherData = await weatherModel.getCurrentLocation();
     var forecastData = await weatherModel.getCurrentForecastWeather();
- Future.delayed(Duration(seconds: 2));
+    Future.delayed(Duration(seconds: 2));
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) => HomePage(
                   locationWeather: weatherData,
-                  forecastWeather: forecastData ,
+                  forecastWeather: forecastData,
                 )));
   }
 

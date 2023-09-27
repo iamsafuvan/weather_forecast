@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app_api/model/weather.dart';
-import 'package:weather_app_api/model/weather_forcast.dart';
-import 'package:weather_app_api/model/weather_model.dart';
+import 'package:weather_app_api/repository/weather_model.dart';
 import 'package:weather_app_api/res/constant/constant.dart';
 import 'package:weather_app_api/res/widgets/main_weather_card.dart';
 import 'package:weather_app_api/res/widgets/small_container.dart';
-import 'package:weather_app_api/res/widgets/small_weather_card.dart';
-import 'package:weather_app_api/res/widgets/weather_list.dart';
 
 class HomePage extends StatefulWidget {
   final locationWeather;
@@ -24,6 +21,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 // comment
 class _HomePageState extends State<HomePage> {
   int? temperature;
@@ -39,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   int? hourlyTemp;
   var weatherForcast = {};
   String? main;
-  WeatherModel weatherModel = WeatherModel();
+  WeatherRepository weatherModel = WeatherRepository();
 
   @override
   void initState() {

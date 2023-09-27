@@ -2,7 +2,7 @@ import 'package:weather_app_api/res/constant/constant.dart';
 import 'package:weather_app_api/services/location.dart';
 import 'package:weather_app_api/services/network_data.dart';
 
-class WeatherModel {
+class WeatherRepository {
   Future<dynamic> getCityWeather(String cityName) async {
     var url = '$weatherApiUrl?q=$cityName&appid=$apiKey&units=metric';
 
@@ -37,7 +37,7 @@ class WeatherModel {
     return weatherData;
   }
 
-  Future<dynamic> getCurrentForecastWeather() async{
+  Future<dynamic> getCurrentForecastWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
     var url =
