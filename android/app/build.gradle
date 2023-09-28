@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.weather_app_api"
     compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+    ndkVersion "26.0.10792818"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     updateUi(widget.locationWeather, widget.forecastWeather);
-    print(widget.forecastWeather);
   }
 
   void updateUi(Weather weather, weatherForcast) {
@@ -244,6 +243,9 @@ class _HomePageState extends State<HomePage> {
                         description: '$condition',
                         country: '$country',
                         imageUrl: 'assets/images/$main.png',
+                        color: isDarkMode
+                            ? Color.fromARGB(255, 163, 160, 165)
+                            : cardColor,
                       ),
                 const SizedBox(
                   height: 20,
@@ -260,6 +262,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/wind1.png',
                           text: '$speed km/h',
+                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
                         ),
                         const SizedBox(
                           width: 20,
@@ -267,6 +270,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/humidity.png',
                           text: '$humidity %',
+                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
                         ),
                         const SizedBox(
                           width: 20,
@@ -274,6 +278,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/high.png',
                           text: '$high °c',
+                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
                         ),
                         const SizedBox(
                           width: 20,
@@ -281,6 +286,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/low.png',
                           text: '$low °c',
+                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
                         ),
                       ],
                     ),
@@ -324,7 +330,9 @@ class _HomePageState extends State<HomePage> {
                                   blurStyle: BlurStyle.outer,
                                 ),
                               ],
-                              color: cardColor,
+                              color: isDarkMode
+                                  ? Color.fromARGB(255, 163, 160, 165)
+                                  : cardColor,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Padding(
@@ -388,7 +396,9 @@ class _HomePageState extends State<HomePage> {
                           height: 60,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: cardColor,
+                            color: isDarkMode
+                                ? Color.fromARGB(255, 163, 160, 165)
+                                : cardColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(

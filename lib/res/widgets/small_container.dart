@@ -5,10 +5,11 @@ import 'package:weather_app_api/res/constant/constant.dart';
 class SmallContainer extends StatelessWidget {
   final String imageUrl;
   final String text;
+  final Color color;
   const SmallContainer({
     super.key,
     required this.imageUrl,
-    required this.text,
+    required this.text, required this.color,
   });
 
   @override
@@ -17,7 +18,7 @@ class SmallContainer extends StatelessWidget {
       width: 70,
       height: 100,
       decoration: BoxDecoration(
-        color: cardColor,
+        color: color,
         boxShadow: const [
           BoxShadow(
             blurRadius: 3.5,

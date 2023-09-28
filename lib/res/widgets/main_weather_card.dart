@@ -10,6 +10,7 @@ class MainWeatherCard extends StatelessWidget {
   final String main;
   final String country;
   final String imageUrl;
+  final Color color;
 
   const MainWeatherCard({
     super.key,
@@ -19,7 +20,7 @@ class MainWeatherCard extends StatelessWidget {
     required this.description,
     required this.country,
     required this.imageUrl,
-    required this.main,
+    required this.main, required this.color,
   });
 
   @override
@@ -28,7 +29,7 @@ class MainWeatherCard extends StatelessWidget {
       width: double.infinity,
       height: 300,
       decoration: BoxDecoration(
-        color: cardColor,
+        color: color,
         borderRadius: BorderRadius.circular(25),
         boxShadow: const [
           BoxShadow(
