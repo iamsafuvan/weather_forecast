@@ -55,13 +55,7 @@ class _StarterState extends State<Starter> {
             SizedBox(
               height: 100,
             ),
-            // SizedBox(
-            //   height: 20,
-            //   width: 20,
-            //   child: CircularProgressIndicator(
-            //     color: Colors.yellow,
-            //   ),
-            // )
+           
           ],
         ),
       ),

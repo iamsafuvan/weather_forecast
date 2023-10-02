@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                         country: '$country',
                         imageUrl: 'assets/images/$main.png',
                         color: isDarkMode
-                            ? Color.fromARGB(255, 94, 93, 95)
+                            ? const Color.fromARGB(255, 94, 93, 95)
                             : cardColor,
                       ),
                 const SizedBox(
@@ -263,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                           imageUrl: 'assets/images/wind1.png',
                           text: '$speed km/h',
                           color: isDarkMode
-                              ? Color.fromARGB(255, 94, 93, 95)
+                              ? const Color.fromARGB(255, 94, 93, 95)
                               : cardColor,
                         ),
                         const SizedBox(
@@ -273,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                           imageUrl: 'assets/images/humidity.png',
                           text: '$humidity %',
                           color: isDarkMode
-                              ? Color.fromARGB(255, 94, 93, 95)
+                              ? const Color.fromARGB(255, 94, 93, 95)
                               : cardColor,
                         ),
                         const SizedBox(
@@ -283,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                           imageUrl: 'assets/images/high.png',
                           text: '$high °c',
                           color: isDarkMode
-                              ? Color.fromARGB(255, 94, 93, 95)
+                              ? const Color.fromARGB(255, 94, 93, 95)
                               : cardColor,
                         ),
                         const SizedBox(
@@ -293,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                           imageUrl: 'assets/images/low.png',
                           text: '$low °c',
                           color: isDarkMode
-                              ? Color.fromARGB(255, 94, 93, 95)
+                              ? const Color.fromARGB(255, 94, 93, 95)
                               : cardColor,
                         ),
                       ],
@@ -339,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                               color: isDarkMode
-                                  ? Color.fromARGB(255, 94, 93, 95)
+                                  ? const Color.fromARGB(255, 94, 93, 95)
                                   : cardColor,
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -355,7 +355,15 @@ class _HomePageState extends State<HomePage> {
                                     height: 60,
                                   ),
                                   Text(
-                                    '${DateFormat('hh:mm a').format(DateTime.parse(DateTime.fromMillisecondsSinceEpoch(forecastDatatHourly['dt'] * 1000).toString())).toString()}',
+                                    DateFormat('hh:mm a')
+                                        .format(
+                                          DateTime.parse(
+                                            DateTime.fromMillisecondsSinceEpoch(
+                                              forecastDatatHourly['dt'] * 1000,
+                                            ).toString(),
+                                          ),
+                                        )
+                                        .toString(),
                                     style: GoogleFonts.kanit(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400,
@@ -376,11 +384,6 @@ class _HomePageState extends State<HomePage> {
                         );
                       }),
                 ),
-                // SmallWeatherCard(
-                //   imageUrl: 'assets/images/storm.png',
-                //   time: '10 AM',
-                //   weather: '12 °c',
-                // ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -405,7 +408,7 @@ class _HomePageState extends State<HomePage> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: isDarkMode
-                                ? Color.fromARGB(255, 94, 93, 95)
+                                ? const Color.fromARGB(255, 94, 93, 95)
                                 : cardColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -443,10 +446,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     }),
-                // const NextFiveDaysWeatherList(
-                //   date: '11-09-2023',
-                //   weather: '34 °c',
-                // )
               ],
             ),
           ),
