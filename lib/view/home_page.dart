@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       extendBodyBehindAppBar: false,
       backgroundColor:
-          isDarkMode ? Color.fromARGB(255, 206, 203, 203) : backgroundColor,
+          isDarkMode ? Color.fromARGB(255, 231, 226, 226) : backgroundColor,
       appBar: AppBar(
         actions: [
           IconButton(
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
         ),
         elevation: 0,
         backgroundColor: isDarkMode
-            ? const Color.fromARGB(255, 206, 203, 203)
+            ? const Color.fromARGB(255, 231, 226, 226)
             : backgroundColor,
         centerTitle: true,
         title: Text(
@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                         country: '$country',
                         imageUrl: 'assets/images/$main.png',
                         color: isDarkMode
-                            ? Color.fromARGB(255, 163, 160, 165)
+                            ? Color.fromARGB(255, 94, 93, 95)
                             : cardColor,
                       ),
                 const SizedBox(
@@ -262,7 +262,9 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/wind1.png',
                           text: '$speed km/h',
-                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
+                          color: isDarkMode
+                              ? Color.fromARGB(255, 94, 93, 95)
+                              : cardColor,
                         ),
                         const SizedBox(
                           width: 20,
@@ -270,7 +272,9 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/humidity.png',
                           text: '$humidity %',
-                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
+                          color: isDarkMode
+                              ? Color.fromARGB(255, 94, 93, 95)
+                              : cardColor,
                         ),
                         const SizedBox(
                           width: 20,
@@ -278,7 +282,9 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/high.png',
                           text: '$high °c',
-                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
+                          color: isDarkMode
+                              ? Color.fromARGB(255, 94, 93, 95)
+                              : cardColor,
                         ),
                         const SizedBox(
                           width: 20,
@@ -286,7 +292,9 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/low.png',
                           text: '$low °c',
-                          color: isDarkMode ? Color.fromARGB(255, 163, 160, 165) : cardColor,
+                          color: isDarkMode
+                              ? Color.fromARGB(255, 94, 93, 95)
+                              : cardColor,
                         ),
                       ],
                     ),
@@ -331,7 +339,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                               color: isDarkMode
-                                  ? Color.fromARGB(255, 163, 160, 165)
+                                  ? Color.fromARGB(255, 94, 93, 95)
                                   : cardColor,
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -397,7 +405,7 @@ class _HomePageState extends State<HomePage> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: isDarkMode
-                                ? Color.fromARGB(255, 163, 160, 165)
+                                ? Color.fromARGB(255, 94, 93, 95)
                                 : cardColor,
                             borderRadius: BorderRadius.circular(15),
                           ),
