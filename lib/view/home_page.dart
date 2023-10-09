@@ -94,6 +94,7 @@ class _HomePageState extends State<HomePage> {
     await Future.delayed(const Duration(seconds: 2));
     updateUi(widget.locationWeather, widget.forecastWeather);
     searchController.clear();
+    isLoading = false;
     setState(() {});
   }
 
@@ -183,12 +184,12 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         child: isLoading
-                            ? const SizedBox(
-                                height: 27,
-                                width: 27,
-                                child: CircularProgressIndicator(
+                            ? IconButton(
+                                onPressed: refresh,
+                                icon: const Icon(
+                                  Icons.close,
+                                  size: 25,
                                   color: Colors.yellow,
-                                  strokeWidth: 4.0,
                                 ),
                               )
                             : Text(
