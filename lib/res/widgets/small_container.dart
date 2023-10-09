@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app_api/res/constant/constant.dart';
 
 class SmallContainer extends StatelessWidget {
   final String imageUrl;

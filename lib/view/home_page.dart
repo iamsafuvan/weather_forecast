@@ -1,13 +1,16 @@
 import 'dart:ui';
 
+import 'package:dark_light_button/dark_light_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app_api/model/weather.dart';
 import 'package:weather_app_api/repository/weather_model.dart';
 import 'package:weather_app_api/res/constant/constant.dart';
 import 'package:weather_app_api/res/widgets/main_weather_card.dart';
 import 'package:weather_app_api/res/widgets/small_container.dart';
+import 'package:weather_app_api/theme/change_theme.dart';
 
 class HomePage extends StatefulWidget {
   final locationWeather;
@@ -24,6 +27,14 @@ class HomePage extends StatefulWidget {
 
 // comment
 class _HomePageState extends State<HomePage> {
+  // ThemeMode _themeMode = ThemeMode.system;
+
+  // void changeTheme(ThemeMode themeMode) {
+  //   setState(() {
+  //     _themeMode = themeMode;
+  //   });
+  // }
+
   int? temperature;
   String? condition;
   String? cityName;
@@ -57,7 +68,6 @@ class _HomePageState extends State<HomePage> {
         humidity = 0;
         speed = 0;
         hourlyTemp = 0;
-        // main = '';
 
         tempIcon = 'Unable to get weather data';
         cityName = '';
@@ -73,12 +83,12 @@ class _HomePageState extends State<HomePage> {
       humidity = weather.humidity.toInt();
       speed = weather.speed.toInt();
       main = weather.main;
-      // hourlyTemp = weatherForecast.hourlyTemp.toInt();
     });
   }
 
-  bool isDarkMode = false;
+  // bool isDarkMode = false;
   bool isLoading = false;
+  // var theme = lightTheme;
   TextEditingController searchController = TextEditingController();
   Future<void> refresh() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -94,33 +104,18 @@ class _HomePageState extends State<HomePage> {
     String formattedDate = DateFormat('MMM d, yyyy').format(now);
     return Scaffold(
       extendBodyBehindAppBar: false,
-      backgroundColor:
-          isDarkMode ? Color.fromARGB(255, 231, 226, 226) : backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         actions: [
-          IconButton(
-            onPressed: () {
-              if (isDarkMode == false) {
-                setState(() {
-                  isDarkMode = true;
-                });
-              } else {
-                setState(() {
-                  isDarkMode = false;
-                });
-              }
-            },
-            icon: isDarkMode
-                ? const Icon(
-                    Icons.dark_mode_outlined,
-                    size: 30,
-                    color: Colors.yellow,
-                  )
-                : const Icon(
-                    Icons.wb_sunny_sharp,
-                    size: 30,
-                    color: Colors.yellow,
-                  ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: DarlightButton(
+              type: Darlights.DarlightThree,
+              onChange: (ThemeMode them) {
+                Provider.of<ChangeTheme>(context, listen: false)
+                    .changeTheme(them);
+              },
+            ),
           )
         ],
         flexibleSpace: ClipRRect(
@@ -136,16 +131,14 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         elevation: 0,
-        backgroundColor: isDarkMode
-            ? const Color.fromARGB(255, 231, 226, 226)
-            : backgroundColor,
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
           'Weather Forecast ',
           style: GoogleFonts.kanit(
             fontSize: 22,
             fontWeight: FontWeight.w400,
-            color: isDarkMode ? Colors.black : fontColor,
+            color: fontColor,
           ),
         ),
       ),
@@ -169,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.kanit(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
-                      color: isDarkMode ? Colors.black : fontColor,
+                      color: fontColor,
                     ),
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(15),
@@ -209,13 +202,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: isDarkMode ? Colors.black : Colors.white,
+                        color: Colors.white,
                       ),
                       hintText: 'Search City',
                       hintStyle: GoogleFonts.kanit(
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
-                        color: isDarkMode ? Colors.black : fontColor,
+                        color: fontColor,
                       ),
                       border: const OutlineInputBorder(
                         borderSide: BorderSide(width: 0.3),
@@ -243,9 +236,7 @@ class _HomePageState extends State<HomePage> {
                         description: '$condition',
                         country: '$country',
                         imageUrl: 'assets/images/$main.png',
-                        color: isDarkMode
-                            ? const Color.fromARGB(255, 94, 93, 95)
-                            : cardColor,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                 const SizedBox(
                   height: 20,
@@ -262,9 +253,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/wind1.png',
                           text: '$speed km/h',
-                          color: isDarkMode
-                              ? const Color.fromARGB(255, 94, 93, 95)
-                              : cardColor,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                         const SizedBox(
                           width: 20,
@@ -272,9 +261,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/humidity.png',
                           text: '$humidity %',
-                          color: isDarkMode
-                              ? const Color.fromARGB(255, 94, 93, 95)
-                              : cardColor,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                         const SizedBox(
                           width: 20,
@@ -282,9 +269,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/high.png',
                           text: '$high °c',
-                          color: isDarkMode
-                              ? const Color.fromARGB(255, 94, 93, 95)
-                              : cardColor,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                         const SizedBox(
                           width: 20,
@@ -292,9 +277,7 @@ class _HomePageState extends State<HomePage> {
                         SmallContainer(
                           imageUrl: 'assets/images/low.png',
                           text: '$low °c',
-                          color: isDarkMode
-                              ? const Color.fromARGB(255, 94, 93, 95)
-                              : cardColor,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ],
                     ),
@@ -308,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                   style: GoogleFonts.kanit(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
-                    color: isDarkMode ? Colors.black : fontColor,
+                    color: fontColor,
                   ),
                 ),
                 const SizedBox(
@@ -338,9 +321,7 @@ class _HomePageState extends State<HomePage> {
                                   blurStyle: BlurStyle.outer,
                                 ),
                               ],
-                              color: isDarkMode
-                                  ? const Color.fromARGB(255, 94, 93, 95)
-                                  : cardColor,
+                              color: Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Padding(
@@ -392,7 +373,7 @@ class _HomePageState extends State<HomePage> {
                   style: GoogleFonts.kanit(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
-                    color: isDarkMode ? Colors.black : fontColor,
+                    color: fontColor,
                   ),
                 ),
                 ListView.builder(
@@ -407,9 +388,7 @@ class _HomePageState extends State<HomePage> {
                           height: 60,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: isDarkMode
-                                ? const Color.fromARGB(255, 94, 93, 95)
-                                : cardColor,
+                            color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Padding(

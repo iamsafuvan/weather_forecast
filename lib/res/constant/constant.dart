@@ -8,14 +8,17 @@ const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 const forecastApiUrl = 'https://api.openweathermap.org/data/2.5/onecall';
 
-const backgroundColor = Color.fromARGB(255, 30, 19, 70);
+const backgroundColor = Color.fromARGB(255, 133, 197, 234);
 
 const fontColor = Color.fromRGBO(255, 255, 255, 1);
 
-const cardColor = Color.fromARGB(255, 47, 35, 87);
+const fontBlack = Colors.black;
+
+const cardColor = Color.fromARGB(255, 96, 147, 190);
 
 // const whiteCardColor = Color.fromARGB(255, 139, 130, 168);
 
+// const cardColor = Color.fromARGB(255, 96, 147, 190);
 
 // const backgroundColor = Color.fromARGB(255, 30, 19, 70);
 
