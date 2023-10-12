@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dark_light_button/dark_light_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -25,16 +26,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-// comment
 class _HomePageState extends State<HomePage> {
-  // ThemeMode _themeMode = ThemeMode.system;
-
-  // void changeTheme(ThemeMode themeMode) {
-  //   setState(() {
-  //     _themeMode = themeMode;
-  //   });
-  // }
-
   int? temperature;
   String? condition;
   String? cityName;
@@ -72,12 +64,12 @@ class _HomePageState extends State<HomePage> {
         tempIcon = 'Unable to get weather data';
         cityName = '';
       }
-      this.weatherForcast = weatherForcast;
+      this.weatherForcast = weatherForcast ?? '';
       temperature = weather.temp.toInt();
       country = weather.country;
       cityName = weather.name;
       condition = weather.description;
-      tempIcon = weatherModel.getWeatherIcon(temperature!);
+
       high = weather.high.toInt();
       low = weather.low.toInt();
       humidity = weather.humidity.toInt();
@@ -86,9 +78,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  // bool isDarkMode = false;
   bool isLoading = false;
-  // var theme = lightTheme;
+
   TextEditingController searchController = TextEditingController();
   Future<void> refresh() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -111,10 +102,13 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: DarlightButton(
-              type: Darlights.DarlightThree,
-              onChange: (ThemeMode them) {
+              options: DarlightTwoOption(
+                lightBackGroundColor: Theme.of(context).colorScheme.primary,
+              ),
+              type: Darlights.DarlightTwo,
+              onChange: (ThemeMode theme) {
                 Provider.of<ChangeTheme>(context, listen: false)
-                    .changeTheme(them);
+                    .changeTheme(theme);
               },
             ),
           )
@@ -156,6 +150,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 60,
                   child: TextField(
+                    cursorColor: Colors.yellow,
                     controller: searchController,
                     onChanged: (newValue) {
                       cityName = newValue;
@@ -173,14 +168,16 @@ class _HomePageState extends State<HomePage> {
                             setState(() {
                               isLoading = true;
                             });
-                            var weatherData =
-                                await weatherModel.getCityWeather(cityName!);
+                            var weatherData = await weatherModel.getCityWeather(
+                                cityName!, context);
+
                             var forecastData =
                                 await weatherModel.getForcastWeather(cityName!);
                             updateUi(weatherData, forecastData);
                           }
                           setState(() {
                             isLoading = false;
+                            searchController.clear();
                           });
                         },
                         child: isLoading
@@ -201,8 +198,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                       ),
-                      prefixIcon: Icon(
-                        Icons.search,
+                      prefixIcon: const Icon(
+                        CupertinoIcons.search,
                         color: Colors.white,
                       ),
                       hintText: 'Search City',
@@ -305,10 +302,9 @@ class _HomePageState extends State<HomePage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 24,
                       itemBuilder: (context, index) {
-                        // var item = hourlyTemp![index];
                         var forecastDatatHourly =
                             weatherForcast['hourly'][index];
-                        // if(DateFormat('MMM d, yyyy').format(DateTime.parse(DateTime.fromMillisecondsSinceEpoch(forecastDatat['dt'] * 1000).toString())) == )
+
                         return Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Container(
@@ -389,6 +385,13 @@ class _HomePageState extends State<HomePage> {
                           height: 60,
                           width: double.infinity,
                           decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 3,
+                                color: Color.fromARGB(255, 23, 18, 18),
+                                blurStyle: BlurStyle.outer,
+                              ),
+                            ],
                             color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(15),
                           ),

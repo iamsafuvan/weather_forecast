@@ -20,7 +20,8 @@ class MainWeatherCard extends StatelessWidget {
     required this.description,
     required this.country,
     required this.imageUrl,
-    required this.main, required this.color,
+    required this.main,
+    required this.color,
   });
 
   @override
@@ -117,14 +118,14 @@ class MainWeatherCard extends StatelessWidget {
                 Text(
                   '$country  ',
                   style: GoogleFonts.kanit(
-                    fontSize: 15,
+                    fontSize: 18,
                     color: fontColor,
                   ),
                 ),
                 Text(
                   location,
                   style: GoogleFonts.kanit(
-                    fontSize: 15,
+                    fontSize: 18,
                     color: fontColor,
                   ),
                 )

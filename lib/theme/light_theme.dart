@@ -5,10 +5,8 @@ ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
   colorScheme: ColorScheme.light(
-    background: Color.fromARGB(255, 133, 197, 234),
+    background: const Color.fromARGB(255, 137, 198, 233),
     primary: cardColor,
     secondary: Colors.grey[800]!,
-    // shadow: Colors.grey,
   ),
-  
 );

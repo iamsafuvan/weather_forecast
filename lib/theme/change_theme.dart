@@ -5,6 +5,7 @@ class ChangeTheme with ChangeNotifier {
 
   changeTheme(ThemeMode theme) {
     this.theme = theme;
+   
     notifyListeners();
   }
 }
