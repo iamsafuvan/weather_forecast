@@ -4,9 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+Thrilled to showcase my Flutter weather app project! 🌐📲 Integrated OpenWeatherMap API for accurate forecasts, implemented theme changing using Provider, and crafted a seamless user experience with real-time weather for current and searched locations. Check out the detailed 24-hour and 7-day forecasts! ☀️❄️ 
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
